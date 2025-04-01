@@ -21,14 +21,14 @@ type Application struct {
 
 func main() {
 	pg := &db.PG{
-		Host:     "postgres_db",
+		Host:     "viksync_postgres_db",
 		Username: env.GetDBUserName(),
 		Password: env.GetDBPassword(),
 		Database: env.GetDBName(),
 	}
 
 	rd := &db.RedisDB{
-		Addr:     "redis_db:6379",
+		Addr:     "viksync_redis_db:6379",
 		Password: "",
 		DB:       0,
 	}
@@ -44,7 +44,7 @@ func main() {
 	rdConn := rd.Connect()
 
 	app := &Application{
-		Port:  ":5001",
+		Port:  ":6972",
 		Store: store.NewStore(pgConn, rdConn),
 	}
 
